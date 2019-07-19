@@ -1,0 +1,25 @@
+server:
+  port: 9412
+
+spring:
+  application:
+    name: springcloud-zuul-server
+
+zuul:
+  retryable: true #是否开启重试功能
+ribbon:
+  MaxAutoRetries: 2 #对当前服务的重试次数
+  MaxAutoRetriesNextServer: 0 #切换相同Server的次数
+
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1110/eureka/
+
+logging:
+  config: classpath:logback.xml
+  level:
+    root: INFO
+    org.springframework.web: INFO
